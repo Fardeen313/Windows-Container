@@ -13,5 +13,5 @@ COPY index.html C:\inetpub\wwwroot\index.html
 # Expose HTTP port
 EXPOSE 80
 
-# Start IIS
-CMD ["powershell", "Start-Service", "W3SVC", ";", "Wait-Process", "-Name", "w3wp"]
+# Start IIS in foreground
+CMD powershell -NoLogo -NoProfile -Command "Start-Service W3SVC; while ($true) { Start-Sleep -Seconds 3600 }"
